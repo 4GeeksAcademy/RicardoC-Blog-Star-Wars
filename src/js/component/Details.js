@@ -4,27 +4,24 @@ import { Context } from '../store/appContext';
 import "../../styles/Details.css";
 
 const Details = () => {
-  const { actions, store } = useContext(Context); // Accedemos a nuestro contexto global
-  const { uid, category } = useParams(); // Obtenemos el uid de la url y category.
-
-
-  //Buscamos cada item según su id y category para saber las propiedades de cada uno.
+  const { actions, store } = useContext(Context); 
+  const { uid, category } = useParams(); 
    
   const person = store.people.find(person => person.uid === uid)
   const planet = store.planets.find(planet => planet.uid === uid)
   const starship = store.starships.find(starship => starship.uid === uid);
 
-  const handleAddFavorite = (name) => { //Llamamos a la función para agregar a favorites mediante su id.
+  const handleAddFavorite = (name) => {
     actions.addFavorites(name);
   }
-  //Llamamos a esta función para obtener los detalles de cada item y la ejecutamos solo cuando se monta useEffect(cuando hacemos clic a details).
+  
   useEffect(() => {
     actions.getDetails(category, uid)
 
   }, [])
   
-  const isFavorite = (name) => { //Verificamos si el nombre del item ya está en favoritos.
-    //El método .some() verifica si algún item coincide con el nombre proporcionado, si es así devuelve true.
+  const isFavorite = (name) => { 
+    
         return store.favorites.some(item => item.name === name);
     };
 
@@ -32,11 +29,11 @@ const Details = () => {
   return (
     <div className="container">
 
-      {/*Si pertenece a la categoria "people" y "properties" existe muestra las siguientes propiedades sino no muestres nada*/}
+      {}
       {category === "people" && store.details.hasOwnProperty("properties") ? (
         <>
           <div className="card bg-dark text-white"style={{width: "60%", height: "700px"}}>
-            {/*Construimos dinámicamente la url para que muestre una imagen para cada personaje basandose en su id*/}
+            {}
             <img src={`https://starwars-visualguide.com/assets/img/characters/${uid}.jpg`}
               className="card-img" alt={`${store.details.properties.name}`}
               onError={(e) => e.target.src = "https://starwars-visualguide.com/assets/img/placeholder.jpg"} /> {/*Si la imagen no carga añadimos una por defecto*/}
@@ -60,7 +57,7 @@ const Details = () => {
           </div>
         </>
       ) : ""}
-      {/*Si pertenece a la categoria "planet" y "properties" existe muestra las siguientes propiedades sino no muestres nada*/}
+      {}
       {category === "planets" && store.details.hasOwnProperty("properties") ? (
         <>
           <div className="card bg-dark text-white"style={{width: "60%", height: "60%"}}>
@@ -86,7 +83,7 @@ const Details = () => {
           </div>
         </>
       ) : ""}
-      {/*Si pertenece a la categoria "starships" y "properties" existe muestra las siguientes propiedades sino no muestres nada*/}
+      {}
       {category === "starships" && store.details.hasOwnProperty("properties") ? (
         <>
           <div className="card bg-dark text-white" style={{width: "60%", height: "900px"}}>

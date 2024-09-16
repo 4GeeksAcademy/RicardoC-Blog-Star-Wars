@@ -3,12 +3,12 @@ import { Context } from "../store/appContext"
 import "../../styles/FavoritesDropdown.css"
 
 const FavoritesDropdown = () => {
-    const { actions, store } = useContext(Context); //Traemos el contexto.
-    const favorites = store.favorites; //Traemos el array favorites.
-    const favoritesCount = favorites.length; //Obtenemos el número de elementos de favorites.
+    const { actions, store } = useContext(Context); 
+    const favorites = store.favorites; 
+    const favoritesCount = favorites.length; 
     const handleRemoveFavorite = (name) => {
-        event.stopPropagation(); //Está función evita que el dropdown se cierre luego de eliminar un item.
-        actions.deleteFavorites(name) //Llamamos a la función de eliminar item de favorites.
+        event.stopPropagation(); 
+        actions.deleteFavorites(name) 
     };
     return (
         <div className="btn-group dropstart">
@@ -18,13 +18,13 @@ const FavoritesDropdown = () => {
                 id="dropdownMenuButton"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"><strong> Favorites</strong>
-                <span className="badge bg-dark">{favoritesCount}</span> {/*Mostramos el contador*/}
+                <span className="badge bg-dark">{favoritesCount}</span> {}
             </button>
             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                {favoritesCount === 0 ? ( //Creamos un condicional para mostrar un mensaje en la lista de items si no hay y si hay mostramos los items.
+                {favoritesCount === 0 ? (
                     <li className="dropdown-item">No favorites</li>
                 ) : (
-                    favorites.map(item => { /*Mapeamos los elementos almacenados en favorites y retornamos una lista(dropdown)*/
+                    favorites.map(item => { 
                         return (
                             <li className="d-flex" key={item.uid}> {/*Identificador para cada elemento*/}
                                 <a className="dropdown-item"

@@ -4,17 +4,17 @@ import "../../styles/Content.css";
 import { Link } from 'react-router-dom';
 
 const Content = () => {
-    const { actions, store } = useContext(Context) //Traemos el contexto: store, actions.
+    const { actions, store } = useContext(Context) 
 
-    const isFavorite = (name) => { //Verificamos si el nombre del item ya está en favoritos.
-        //El método .some() verifica si algún item coincide con el nombre proporcionado, si es así devuelve true.
+    const isFavorite = (name) => { 
+       
             return store.favorites.some(item => item.name === name);
         };
-    const handleToggleFavorites = (name) => { //Función para agregar y eliminar item por su NAME(con el uid hay conflictos).
-        if (isFavorite(name)) { //Verificamos si ya está el item, si es true se elimina, si es false lo agregamos.
-            actions.deleteFavorites(name); //función para eliminar
+    const handleToggleFavorites = (name) => { 
+        if (isFavorite(name)) { 
+            actions.deleteFavorites(name); 
         } else {
-            actions.addFavorites(name); //función para agregar.
+            actions.addFavorites(name); 
         }
     };
 
@@ -26,19 +26,19 @@ const Content = () => {
             </div>
             <div className="card-container">
                 <div className="card-deck">
-                    {store.people.map(person => { //Mapeamos nuestro array "people" para crear un card por cada elemento.
+                    {store.people.map(person => { 
                         return (
-                            <div className="card" key={person.uid}> {/*Identificador para cada elemento*/}
+                            <div className="card" key={person.uid}> {}
                                 <div className="card-body">
-                                    <h3>{person.name}</h3> {/*Propiedades de los elementos*/}
+                                    <h3>{person.name}</h3> {}
                                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                     <div className="buttons">
-                                        <Link to={`/details/people/${person.uid}`}> {/*Nos lleva a los detalles de cada item por su id y categoria: people, planets, starships*/}
-                                            <i className="fa-regular fa-circle-question"></i>
+                                        <Link to={`/details/people/${person.uid}`}> {}
+                                        <i class="fa-solid fa-circle-info"></i>
                                         </Link>
                                         <i 
-                                            className={`fa-regular fa-star ${isFavorite(person.name) ? "favo" : ""}`}
-                                            onClick={() => handleToggleFavorites(person.name)}></i> {/*name unico de cada elemento*/}
+                                            className={`fa-regular fa-heart ${isFavorite(person.name) ? "favo" : ""}`}
+                                            onClick={() => handleToggleFavorites(person.name)}></i> {}
                                     </div>
                                 </div>
                             </div>
@@ -60,10 +60,10 @@ const Content = () => {
                                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                     <div className="buttons">
                                         <Link to={`/details/planets/${planet.uid}`}>
-                                            <i className="fa-regular fa-circle-question"></i>
+                                        <i class="fa-solid fa-circle-info"></i>
                                         </Link>
                                         <i 
-                                            className={`fa-regular fa-star ${isFavorite(planet.name) ? "favo" : ""}`}
+                                            className={`fa-regular fa-heart ${isFavorite(planet.name) ? "favo" : ""}`}
                                             onClick={() => handleToggleFavorites(planet.name)}></i>
                                     </div>
                                 </div>
@@ -86,10 +86,10 @@ const Content = () => {
                                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                     <div className="buttons">
                                         <Link to={`/details/starships/${starship.uid}`}>
-                                            <i className="fa-regular fa-circle-question"></i>
+                                        <i class="fa-solid fa-circle-info"></i>
                                         </Link>
                                         <i 
-                                            className={`fa-regular fa-star ${isFavorite(starship.name) ? "favorite" : ""}`} 
+                                            className={`fa-regular fa-heart ${isFavorite(starship.name) ? "favorite" : ""}`} 
                                             onClick={() => handleToggleFavorites(starship.name)}></i>
 
                                     </div>
